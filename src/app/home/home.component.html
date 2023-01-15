@@ -1,0 +1,46 @@
+<div class="workout-button-container">
+  <button mat-raised-button color="primary" (click)="selectWorkout('Push')">
+    Push
+  </button>
+  <button mat-raised-button color="primary" (click)="selectWorkout('Pull')">
+    Pull
+  </button>
+  <button mat-raised-button color="primary" (click)="selectWorkout('Legs')">
+    Legs
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="selectWorkout('Shoulders')"
+  >
+    Shoulders
+  </button>
+</div>
+<div *ngIf="selectedWorkout">
+  <mat-card>
+    <mat-card-title>{{ selectedWorkout }}</mat-card-title>
+    <mat-card-content>
+      <div *ngFor="let exercise of exercises[selectedWorkout]">
+        <mat-list>
+          <mat-list-item
+            >{{ exercise.name }} - {{ exercise.sets }} sets of
+            {{ exercise.reps }} reps</mat-list-item
+          >
+        </mat-list>
+        <mat-form-field>
+          <mat-label>Actual Sets</mat-label>
+          <input matInput [(ngModel)]="exercise.actualSets" type="number" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Actual Repetitions</mat-label>
+          <input matInput [(ngModel)]="exercise.actualReps" type="number" />
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="saveWorkout()">
+        Save Workout
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
